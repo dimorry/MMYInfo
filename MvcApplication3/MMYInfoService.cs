@@ -32,15 +32,20 @@ namespace MvcApplication3
         public ResponseStatus ResponseStatus { get; set; }
     }
 
-    public class MMYInfoService : Service
+    public class MMYInfoService : Service, IGet<MMYInfo>
     {
         public MMYInfoRepository repository { get; set; }
 
+
+        #region IGet<MMYInfo> Members
+
         public object Get(MMYInfo request)
         {
-            return 
-                request.Sku != null ?  repository.GetBySku(request.Sku) : null;
+            return
+                request.Sku != null ? repository.GetBySku(request.Sku) : null;
         }
+
+        #endregion
     }
 
     public class MMYInfoRepository
